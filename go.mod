@@ -187,6 +187,9 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 )
 
-require github.com/whilp/git-urls v1.0.0 // indirect
+require (
+	bou.ke/staticfiles v0.0.0-20210106104248-dd04075d4104 // indirect
+	github.com/whilp/git-urls v1.0.0 // indirect
+)
 
 replace github.com/go-git/go-git/v5 => github.com/argoproj-labs/go-git/v5 v5.4.4
