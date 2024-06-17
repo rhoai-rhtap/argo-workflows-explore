@@ -1,6 +1,6 @@
 module github.com/argoproj/argo-workflows/v3
 
-go 1.20
+go 1.21
 
 require (
 	cloud.google.com/go/storage v1.30.1
@@ -52,7 +52,6 @@ require (
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0
 	golang.org/x/crypto v0.14.0
-	golang.org/x/net v0.12.0
 	golang.org/x/oauth2 v0.10.0
 	golang.org/x/sync v0.3.0
 	golang.org/x/time v0.3.0
@@ -187,7 +186,10 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 )
 
-require google.golang.org/genproto/googleapis/api v0.0.0-20230711160842-782d3b101e98
+require (
+	golang.org/x/net v0.12.0
+	google.golang.org/genproto/googleapis/api v0.0.0-20230711160842-782d3b101e98
+)
 
 require (
 	cloud.google.com/go/compute/metadata v0.2.3 // indirect
