@@ -36,6 +36,7 @@ LABEL com.redhat.component="odh-data-science-pipelines-argo-workflowcontroller-c
       summary="odh-data-science-pipelines-argo-workflowcontroller" \
       maintainer="['managed-open-data-hub@redhat.com']" \
       io.openshift.expose-services="" \
+      io.openshift.tags="" \
       io.k8s.display-name="odh-data-science-pipelines-argo-workflowcontroller" \
       io.k8s.description="odh-data-science-pipelines-argo-workflowcontroller" \
       com.redhat.license_terms="https://www.redhat.com/licenses/Red_Hat_Standard_EULA_20191108.pdf"
