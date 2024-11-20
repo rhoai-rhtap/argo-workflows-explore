@@ -50,7 +50,7 @@
         "groupName": "Konflux references",
         "branchPrefix": "konflux/references/",
         "group": {
-          "branchTopic": "{{{baseBranch}}}",
+          "branchTopic": "test-1",
           "commitMessageTopic": "{{{groupName}}}"
         },
         "commitMessageTopic": "Konflux references",
