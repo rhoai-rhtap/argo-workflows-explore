@@ -4,12 +4,18 @@
     "config:recommended"
   ],
   "branchPrefix": "renovate/",
-  "enabledManagers": ["dockerfile", "tekton"],
+  "baseBranches": ["main", "test-1"],
+  "ignoreTests": true,
+  "automergeType": "pr",
+  "automerge": true,
+  "enabledManagers": ["dockerfile", "tekton", "rpm"],
   "dockerfile": {
     "enabled": true,
-    "baseBranches": ["main"],
     "additionalBranchPrefix": "{{baseBranch}}/",
     "branchPrefix": "konflux/mintmaker/",
+    "ignoreTests": true,
+    "automergeType": "pr",
+    "automerge": true,
     "packageRules": [
       {
         "matchUpdateTypes": ["major", "minor", "pin", "pinDigest", "patch", "bump"],
@@ -17,6 +23,9 @@
       },
       {
         "matchUpdateTypes": ["digest"],
+        "enabled": true
+      },
+      {
         "matchFileNames": ["*Dockerfile.konflux*"],
         "enabled": true
       }
@@ -30,9 +39,6 @@
     "includePaths": [
       ".tekton/**"
     ],
-  "ignoreTests": true,
-  "automergeType": "pr",
-  "automerge": true,
     "packageRules": [
       {
         "matchUpdateTypes": ["major", "minor", "pin", "pinDigest", "patch", "bump"],
@@ -45,10 +51,11 @@
         ],
         "matchUpdateTypes": ["digest"],
         "enabled": true,
+        "baseBranches": ["test-1"],
         "groupName": "Konflux references",
         "branchPrefix": "konflux/references/",
         "group": {
-          "baseBranches": ["test-1"],
+          "branchTopic": "{{{baseBranch}}}",
           "commitMessageTopic": "{{{groupName}}}"
         },
         "commitMessageTopic": "Konflux references",
