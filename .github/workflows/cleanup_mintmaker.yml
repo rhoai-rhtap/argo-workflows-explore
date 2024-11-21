@@ -1,9 +1,9 @@
-name: Cleanup MintMaker Branches
+name: Cleanup Konflux Branches
 
 on:
   schedule:
-    - cron: '*/20 * * * *' # Runs every 20 minutes
-  workflow_dispatch: # Allows manual trigger
+    - cron: '*/20 * * * *'  # Runs every 20 minutes
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   cleanup:
@@ -31,27 +31,27 @@ jobs:
         import os
         import requests
         from datetime import datetime
-
+        
         # GitHub API setup
         GITHUB_TOKEN = os.getenv("GH_TOKEN")
         REPO_OWNER = os.getenv("REPO_OWNER")
         REPO_NAME = os.getenv("REPO_NAME")
         BASE_URL = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}"
         HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
-
+        
         def get_branches():
             response = requests.get(f"{BASE_URL}/branches", headers=HEADERS)
             response.raise_for_status()
             return [
                 branch['name'] for branch in response.json() 
-                if branch['name'].startswith("mintmaker/")
+                if branch['name'].startswith("konflux/references/") or branch['name'].startswith("konflux/mintmaker/")
             ]
-
+        
         def get_open_prs(branch):
             response = requests.get(f"{BASE_URL}/pulls", headers=HEADERS, params={"head": f"{REPO_OWNER}:{branch}"})
             response.raise_for_status()
             return response.json()
-
+        
         def close_pr(pr_number):
             response = requests.patch(
                 f"{BASE_URL}/pulls/{pr_number}",
@@ -59,7 +59,7 @@ jobs:
                 json={"state": "closed"}
             )
             response.raise_for_status()
-
+        
         def rename_pr(pr_number, title):
             response = requests.patch(
                 f"{BASE_URL}/pulls/{pr_number}",
@@ -67,14 +67,14 @@ jobs:
                 json={"title": title}
             )
             response.raise_for_status()
-
+        
         def delete_branch(branch):
             response = requests.delete(f"{BASE_URL}/git/refs/heads/{branch}", headers=HEADERS)
             if response.status_code == 422:  # Ignore branches already deleted
                 print(f"Branch {branch} already deleted.")
             else:
                 response.raise_for_status()
-
+        
         def cleanup():
             branches = get_branches()
             for branch in branches:
@@ -88,7 +88,7 @@ jobs:
                     print(f"Closed and renamed PR #{pr_number}: {new_title}")
                 delete_branch(branch)
                 print(f"Deleted branch: {branch}")
-
+        
         if __name__ == "__main__":
             cleanup()
         EOF
