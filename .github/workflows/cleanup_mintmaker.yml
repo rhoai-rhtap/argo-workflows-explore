@@ -2,7 +2,7 @@ name: Cleanup Konflux Branches
 
 on:
   schedule:
-    - cron: '*/20 * * * *'  # Runs every 20 minutes
+    - cron: '0 */2 * * *'  # Runs every 2 hr
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
