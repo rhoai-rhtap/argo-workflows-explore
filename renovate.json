@@ -9,8 +9,8 @@
   "automergeType": "pr",
   "automerge": true,
   "enabledManagers": ["dockerfile", "tekton", "rpm"],
+  "schedule": ["before 3pm"],
   "dockerfile": {
-    "schedule": ["before 3pm"],
     "enabled": true,
     "additionalBranchPrefix": "{{baseBranch}}/",
     "branchPrefix": "konflux/mintmaker/",
@@ -51,7 +51,6 @@
           "^quay.io/konflux-ci/tekton-catalog/"
         ],
         "matchUpdateTypes": ["digest"],
-        "schedule": ["at any time"],
         "enabled": true,
         "baseBranches": ["test-1"],
         "groupName": "Konflux references",
