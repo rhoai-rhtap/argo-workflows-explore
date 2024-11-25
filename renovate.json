@@ -2,7 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "enabledManagers": ["tekton"],
-  "baseBranches": ["main", "test-1"],
   "tekton": {
     "baseBranches": ["test-1"],
     "fileMatch": ["\\.yaml$", "\\.yml$"],
