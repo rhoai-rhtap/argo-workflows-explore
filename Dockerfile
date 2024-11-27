@@ -1,9 +1,9 @@
-#syntax=docker/dockerfile:1.12
+#syntax=docker/dockerfile:1.2
 ARG GIT_COMMIT=unknown
 ARG GIT_TAG=unknown
 ARG GIT_TREE_STATE=unknown
 
-FROM golang:1.22-alpine3.18 as builder
+FROM golang:1.21-alpine3.18 as builder
 
 RUN apk update && apk add --no-cache \
     git \
